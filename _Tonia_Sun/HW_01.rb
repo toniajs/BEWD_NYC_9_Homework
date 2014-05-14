@@ -36,3 +36,39 @@
 #
 ###############################################################################
 
+# Introduction
+puts "Welcome to the Secret Number Game! Created by Tonia Sun"
+
+puts "What is your name?"
+player_name = gets.chomp
+
+puts "Hi #{player_name}!"
+puts "To play this game, you must guess a number between 1 and 10, and you will have 3 tries to do so. If you're ready, we'll start now."
+puts "#{player_name}, what is your guess?"
+
+# Define secret number
+$randnum = 5
+
+# Takes player input and tells player if guess is too high or too low, or if guess was correct
+def guess(guesses, randnum)
+	player_guess = gets.to_i
+	randnum = $randnum
+
+	if player_guess == randnum
+		abort("You win! Congratulations")
+	elsif player_guess > randnum
+		puts "Your guess was too high. You have #{guesses} guesses before the game is over. Please enter another number."
+	elsif player_guess < randnum
+		puts "Your guess was too low. You have #{guesses} guesses before the game is over. Please enter another number."
+	end
+end
+
+# Calls guess method to give player 3 tries to guess the right number
+guesses = 2
+while guesses > -1
+	guess(guesses, $randnum)
+	guesses -=1
+end
+
+# Game end if player does not guess correctly in 3 guesses
+puts "Sorry #{player_name}, you have 0 guesses left. The secret number was #{$randnum}. You've lost and the game is over."
